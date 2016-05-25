@@ -5,29 +5,27 @@ var a4print = window.a4print || {};
 a4print.dialog = function() {
 /*初始化弹出框init，背景遮罩bg，提示nav，title*/
     var bg, dialog, mod = {}, 
-
-        init = function() {debugger
+        init = function() {
             var mod = ['<div class="mod-dialog-bg"></div>', '<div id="mod-dialog" class="mod-dialog">', '<div class="dialog-nav">',
              '<span class="dialog-title"></span>',
              '<a href="#" onclick="return false" class="dialog-close glyphicon glyphicon-remove"></a>',   
               "</div>", '<div class="dialog-main"></div>', "</div>"].join(""),
                 init = $(mod).hide().appendTo("body");
-                bg = init.filter(".mod-dialog-bg"),
-                dialog = init.filter(".mod-dialog"),  //找到class为mod-dialog的div元素
+                bg = init.filter(".mod-dialog-bg");
+                dialog = init.filter(".mod-dialog");  //找到class为mod-dialog的div元素
                 dialog.find(".dialog-close").click(function() {//找class为mod-dialog的div的子类中class为dialog-close这个的对象添加方法
                 close();
             });
-        }, 
-
+        }; 
 /*addContent把标题和html添加进去*/
         addContent = function() {
-             dialog.css("width", mod.width || ""),
-             dialog.find(".dialog-title").html(mod.title), 
-             dialog.find(".dialog-main").html(mod.html), 
-             dialog.show(), 
-             bg.show(), 
-             state()
-        }, 
+             dialog.css("width", mod.width || "");
+             dialog.find(".dialog-title").html(mod.title); 
+             dialog.find(".dialog-main").html(mod.html);
+             dialog.show();
+             bg.show();
+             state();
+        }; 
  /*state确定显示位置*/
         state = function() {
             var bg = ($(window).width() - dialog.width()) / 2,
@@ -36,7 +34,7 @@ a4print.dialog = function() {
                 left: bg,
                 top: mod
             })
-        }, 
+        };
 
 /*{html: init}*/
         open = function(bg) {
@@ -47,7 +45,7 @@ a4print.dialog = function() {
                 html: "",
                 closeFn: null
             }, bg), dialog || init(), addContent(), dialog
-        }, 
+        };
  /*关闭窗口，背景遮罩bg隐藏，关闭按钮t隐藏，弹窗n关闭*/
         close = function() {
             bg && bg.hide(), dialog && dialog.hide(), mod.closeFn && mod.closeFn.call(this)
@@ -129,34 +127,6 @@ var tip=function fadeout(e,t){debugger
     setTimeout("$('.mod-dialog-bg').fadeOut('3000'),$('.mod-dialog').fadeOut('3000')",2000);
     
 }
-/*添加表单*/
-/*a4print.dialog.addForm=function(e,formData,t){
-      var init="";
-     for (var i=0;i <=formData.length - 1; i++) {      
-          init+=[
-        '<div class="dialog-form-group">',
-            "<label class='col-md-3 control-label'>" + formData[i] + "</label>",
-            '<div class="col-md-9">',
-                '<input class="form-control" autocomplete="off">',
-            '</div>',
-         '</div>',
-         ].join("");
-}
-   addContent = a4print.dialog.show({
-            html: init
-        });
-
-     $('.mod-dialog').css("animation","");
-    
-    return addContent.find(".console-btn-confirm").click(function() {debugger
-        var e = t && t.call(addContent);
-        e !== !1 && a4print.dialog.hide()
-    }), 
-
-    addContent.find(".console-btn-cancel").click(function() {
-        n && n.call(addContent), a4print.dialog.hide()
-    }), addContent;
-};*/
 
 
 
