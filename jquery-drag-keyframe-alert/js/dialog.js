@@ -16,7 +16,7 @@ a4print.dialog = function() {
                 dialog.find(".dialog-close").click(function() {//找class为mod-dialog的div的子类中class为dialog-close这个的对象添加方法
                 close();
             });
-        }; 
+        },
 /*addContent把标题和html添加进去*/
         addContent = function() {
              dialog.css("width", mod.width || "");
@@ -25,7 +25,7 @@ a4print.dialog = function() {
              dialog.show();
              bg.show();
              state();
-        }; 
+        },
  /*state确定显示位置*/
         state = function() {
             var bg = ($(window).width() - dialog.width()) / 2,
@@ -34,7 +34,7 @@ a4print.dialog = function() {
                 left: bg,
                 top: mod
             })
-        };
+        },
 
 /*{html: init}*/
         open = function(bg) {
@@ -45,7 +45,7 @@ a4print.dialog = function() {
                 html: "",
                 closeFn: null
             }, bg), dialog || init(), addContent(), dialog
-        };
+        },
  /*关闭窗口，背景遮罩bg隐藏，关闭按钮t隐藏，弹窗n关闭*/
         close = function() {
             bg && bg.hide(), dialog && dialog.hide(), mod.closeFn && mod.closeFn.call(this)
@@ -76,7 +76,7 @@ window.confirm=a4print.dialog.confirm = function(e, t, n) {debugger
 };
 
 /*提示框alert*/
- window.alert =a4print.dialog.alert = function(e, t) { debugger
+ window.alert = a4print.dialog.alert = function(e, t) { debugger
     var n = ['<div class="dialog-content">', "<p>" + e + "</p>", "</div>", '<div class="dialog-console clearfix_new">', '<a class="console-btn-confirm btn btn-info" href="#" onclick="return false;">确定</a>', "</div>"].join(""),
         init = a4print.dialog.show({
             html: n
